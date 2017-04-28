@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Text;
 namespace COOKING_GAME
 {
-	public class shop
+	public class Shop
 	{
 		public static void buy_food(ref int Money, int Cost, string Name )
 		{
-					if (Money < 25)
+					if (Money < Cost)
 					{
 						Console.WriteLine($"Недостаточно денег ({Money} рублей)");
 					}
 					else
 					{
-						Money -= 25;
-						Console.WriteLine($"Ты купил {Name} за {Money} рублей.");
+						Money -= Cost;
+						Console.WriteLine($"Ты купил {Name} за {Cost} рублей.");
 						Console.WriteLine($"У тебя осталось {Money} рублей.");
 					}
 		}
 		
-		public static void Menu(ref int Money)
+		public static void Menu(ref int Money, ref stat stats)
 		{
 			char c;
 			List<Food> FoodList = new List<Food>();
@@ -55,16 +55,17 @@ namespace COOKING_GAME
 				{
 					break;
 				}
-				Check(ref Money, c);
+				Check(ref Money, c,ref stats);
 
 			}
 		}
-		public static void Check(ref int Money, char gen)
+		public static void Check(ref int Money, char gen, ref stat stats)
 		{
 			switch (gen)
 			{
 				case '1':
-					buy_food(ref Money, 25, "Доширак"); 
+					buy_food(ref Money, 25, "Доширак");
+                    stats.DoshirakAmount++;
 					Support.Wait();
 					break;
 				
@@ -72,6 +73,7 @@ namespace COOKING_GAME
 				
 				case '2':
 					buy_food(ref Money, 10, "Воду 0.5л");
+                    stats.WaterAmount += 0.5;
 					Support.Wait();
 					break;
 			}

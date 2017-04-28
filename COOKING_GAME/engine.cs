@@ -8,7 +8,7 @@ namespace COOKING_GAME
 		{
 			Console.Title = "Дошимперия";
 			stat config = new stat();
-			shop Shop = new shop();
+			Shop Shop = new Shop();
 			int i = 0; //Game parametres from config
 			Console.WriteLine("Добро пожаловать в игру про готовку, вы начинающий повар и вам каким то образом необходимо\n" +
 							  "прожить на свои 100 рублей. Зарабатывайте деньги продавая готовую еду, развивайте свои навыки\n" +

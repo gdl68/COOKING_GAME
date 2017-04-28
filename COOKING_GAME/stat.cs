@@ -3,19 +3,20 @@ namespace COOKING_GAME
 {
 	public class stat
 	{
-		public string Name { get; set; } //Just name
-		public int Score { get; set; } //Just score
+        public string Name;//Just name
+        public int Score; //Just score
 		public int Money = 100; //IN ROUBLES
-		public int Time { get; set; } //IN HOURS
-		public int Coolness { get; set; } //IN lv
- 		public int Cooking { get; set; } //IN lv
+        public int Time; //IN HOURS
+        public int Coolness; //IN lv
+        public int Cooking; //IN lv
 
-		public bool Restaurant { get; set; } = false;
-	
+		public bool Restaurant = false;
 
-		public string msg { get; set; } //Just message
 
-		public int FoodAmount { get; set; }
+        public string msg; //Just message
+
+        public double WaterAmount = 0;
+        public double DoshirakAmount = 0;
 	
 	
 	}

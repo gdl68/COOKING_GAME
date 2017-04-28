@@ -57,13 +57,13 @@ namespace COOKING_GAME
 			Console.WriteLine(StatsOut);
 		}
 
-		public static void General_check(char gen,stat stat)
+		public static void General_check(char gen,stat stats)
 		{
 			char c;
 			switch (gen)
 			{                   //ADD MORE CASES HERE ON EVERY ACTION
 
-
+                //EXIT
 				case 'q':
 
 					while (true)
@@ -91,10 +91,15 @@ namespace COOKING_GAME
 				
 				
 				
-				
+				//SHOP
 				case 'b':
-					shop.Menu(ref stat.Money);
+					Shop.Menu(ref stats.Money, ref stats);
 					break;
+
+
+                case 't':
+                    Inventory.ShowInventory(ref stats);
+                    break;
 					
 					
 				
@@ -104,7 +109,7 @@ namespace COOKING_GAME
 				//INSTANT EXIT IF SOMETHING WRONG DAFUK
 				
 			}
-			Main_act(ref stat);
+			Main_act(ref stats);
 		}
 
 
