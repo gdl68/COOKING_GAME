@@ -31,6 +31,7 @@ namespace COOKING_GAME
 			while (true)
 			{
 				int i = 1;
+
 				Console.WriteLine("+--------------------+");
 				Console.WriteLine("Вот что есть в Пятёрочке");
 				Console.WriteLine("+--------------------+");
@@ -41,6 +42,8 @@ namespace COOKING_GAME
 					i++;
 				}
 				Console.WriteLine(foodline);
+				Console.WriteLine("+--------------------+");
+				Console.WriteLine($"У тебя {stats.Money} рублей");
 				Console.WriteLine("+--------------------+");
 				Console.WriteLine("q. Выйти из магазина");
 				Console.WriteLine("h. Почитать справку");
@@ -53,6 +56,8 @@ namespace COOKING_GAME
 				}
 				if (c == 'q')
 				{
+					Console.WriteLine("Вы идете домой");
+					Support.Way(ref stats);
 					break;
 				}
 				Check(ref Money, c,ref stats);

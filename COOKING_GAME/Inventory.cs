@@ -8,7 +8,7 @@ namespace COOKING_GAME
 {
     class Inventory
     {
-        public static void ShowInventory(ref stat stats)
+        public static void Menu(ref stat stats)
         {
             char c;
             while (true)
@@ -16,16 +16,21 @@ namespace COOKING_GAME
                 var holodilnik = new StringBuilder();
                 holodilnik.AppendLine("Вот что у тебя в холодильнике");
                 holodilnik.AppendLine("+--------------------+");
-
-                //PUT ANOTHER FOOD AMOUNT HERE
-                holodilnik.AppendLine($"Вода: {stats.WaterAmount} л");
-                holodilnik.AppendLine($"Доширак: {stats.DoshirakAmount} шт.");
+				holodilnik.AppendLine("");
 
 
 
+				//PUT ANOTHER FOOD AMOUNT HERE
+				if (stats.WaterAmount != 0) { holodilnik.AppendLine($"Вода: {stats.WaterAmount} л"); }
+				if (stats.DoshirakAmount != 0) { holodilnik.AppendLine($"Доширак: {stats.DoshirakAmount} шт."); }
+				if (stats.HotDoshirakAmount != 0) { holodilnik.AppendLine($"Заваренный доширак: {stats.HotDoshirakAmount} шт."); }
 
 
-                holodilnik.AppendLine("+--------------------+");
+
+
+
+				holodilnik.AppendLine("");
+				holodilnik.AppendLine("+--------------------+");
 
 
                 //Here goes actions
