@@ -125,8 +125,13 @@ namespace COOKING_GAME
                 //
                 //FOOD LIKE THAT holodilnik.AppendLine($"1. Вода: {stats.WaterAmount} л");
                 //
-                holodilnik.AppendLine($"1. Вода: {stats.WaterAmount} л");
-                holodilnik.AppendLine($"2. Доширак: {stats.DoshirakAmount} шт.");
+                if (stats.WaterAmount != 0) { holodilnik.AppendLine($"Вода: {stats.WaterAmount} л"); }
+                if (stats.DoshirakAmount != 0) { holodilnik.AppendLine($"Доширак: {stats.DoshirakAmount} шт."); }
+                if (stats.HotDoshirakAmount != 0) { holodilnik.AppendLine($"Заваренный доширак: {stats.HotDoshirakAmount} шт."); }
+
+
+
+
                 holodilnik.AppendLine("+--------------------+");
                 holodilnik.AppendLine("Введите номер предмета, который хотите выбросить");
                 Console.WriteLine(holodilnik);

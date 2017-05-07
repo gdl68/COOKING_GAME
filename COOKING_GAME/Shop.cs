@@ -22,12 +22,6 @@ namespace COOKING_GAME
 		public static void Menu(ref int Money, ref stat stats)
 		{
 			char c;
-			List<Food> FoodList = new List<Food>();
-			Food Doshirak = new Food("Доширак", 25);
-			Food WaterHalf = new Food("Вода 0.5л", 10);
-			FoodList.Add(Doshirak);
-			FoodList.Add(WaterHalf);
-
 			while (true)
 			{
 				int i = 1;
@@ -36,13 +30,16 @@ namespace COOKING_GAME
 				Console.WriteLine("Вот что есть в Пятёрочке");
 				Console.WriteLine("+--------------------+");
 				var foodline = new StringBuilder();
-				foreach (Food item in FoodList)
-				{
-					foodline.Append($"{i}. {item.Name}, стоит {item.ShopCost} рублей\n");
-					i++;
-				}
-				Console.WriteLine(foodline);
-				Console.WriteLine("+--------------------+");
+
+
+                if (stats.WaterAmount != 0) { foodline.AppendLine($"Вода: {stats.WaterAmount} л"); }
+                if (stats.DoshirakAmount != 0) { foodline.AppendLine($"Доширак: {stats.DoshirakAmount} шт."); }
+                if (stats.HotDoshirakAmount != 0) { foodline.AppendLine($"Заваренный доширак: {stats.HotDoshirakAmount} шт."); }
+
+
+
+
+                Console.WriteLine("+--------------------+");
 				Console.WriteLine($"У тебя {stats.Money} рублей");
 				Console.WriteLine("+--------------------+");
 				Console.WriteLine("q. Выйти из магазина");

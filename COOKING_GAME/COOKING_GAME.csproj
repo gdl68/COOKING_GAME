@@ -36,10 +36,10 @@
     <Compile Include="Inventory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Exit.cs" />
+    <Compile Include="SellFood.cs" />
     <Compile Include="stat.cs" />
     <Compile Include="Support.cs" />
     <Compile Include="Shop.cs" />
-    <Compile Include="Food.cs" />
     <Compile Include="Cook.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
