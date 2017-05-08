@@ -89,10 +89,7 @@ namespace COOKING_GAME
 			StatsOut.AppendLine($"b. В магазин");
 			StatsOut.AppendLine($"t. В холодильник");
 			StatsOut.AppendLine($"w. На кухню");
-			if (stat.Restaurant == true)
-			{
-				StatsOut.AppendLine($"r. Отправиться в ресторан");
-			}
+		    StatsOut.AppendLine($"r. Отправиться на рынок");
 			StatsOut.AppendLine($"q. Выйти из игры");
 			StatsOut.ToString();
 			Console.WriteLine(StatsOut);
@@ -129,11 +126,12 @@ namespace COOKING_GAME
 						}
 					}
 					break;
-				
-				
-				
-				//SHOP
-				case 'b':
+
+
+
+                //SHOP
+
+                case 'b':
 					Console.WriteLine("Вы идете в магазин");
 
 					Way(ref stats);
@@ -141,7 +139,8 @@ namespace COOKING_GAME
 					Shop.Menu(ref stats.Money, ref stats);
 					break;
 
-					//Inventory
+                //Inventory
+
                 case 't':
                     Inventory.Menu(ref stats);
                     break;
@@ -149,7 +148,15 @@ namespace COOKING_GAME
 					case 'w':
 					Cook.Menu(ref stats);
 					break;
-				
+
+
+                case 'r':
+                    Console.WriteLine("Вы идете на рынок");
+                    Way(ref stats);
+                    SellFood.Menu(ref stats);
+                    Console.WriteLine("Вы идете домой");
+                    Way(ref stats);
+                    break;
 			}
 			Main_act(ref stats);
 		}

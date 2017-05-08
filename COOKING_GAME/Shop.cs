@@ -30,11 +30,10 @@ namespace COOKING_GAME
 				Console.WriteLine("Вот что есть в Пятёрочке");
 				Console.WriteLine("+--------------------+");
 				var foodline = new StringBuilder();
+foodline.AppendLine($"1. Доширак"); 
+foodline.AppendLine($"2. Вода 0.5"); 
 
-
-                if (stats.WaterAmount != 0) { foodline.AppendLine($"Вода: {stats.WaterAmount} л"); }
-                if (stats.DoshirakAmount != 0) { foodline.AppendLine($"Доширак: {stats.DoshirakAmount} шт."); }
-                if (stats.HotDoshirakAmount != 0) { foodline.AppendLine($"Заваренный доширак: {stats.HotDoshirakAmount} шт."); }
+                Console.WriteLine(foodline);
 
 
 

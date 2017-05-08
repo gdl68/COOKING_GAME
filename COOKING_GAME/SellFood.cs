@@ -16,53 +16,201 @@ namespace COOKING_GAME
             Console.WriteLine("Вы ждете покупателя");
             System.Threading.Thread.Sleep(WaitTime.Next(3000, 8000));
             Console.Clear();
-            switch (CustomerType.Next(1, 3))
-            {
-                case 1:
-                    SeriousCustomer(ref stats);
-                    break;
-                case 2:
-                    GoodCustomer(ref stats);
-                    break;
-                case 3:
-                    BadCustomer(ref stats);
-                    break;
-            }
-            Console.WriteLine("");
+            Console.WriteLine("К вам подошел покупатель");
+            CustomeAppear(ref stats);
+            
 
         }
 
-        private static void BadCustomer(ref stat stats)
+        private static void CustomeAppear(ref stat stats)
         {
             Random ThingChoice = new Random();
+            Random RealPriceRAN = new Random();
             int choice = 0;
             string ItemName = "";
-            switch (ThingChoice.Next(1, 3))
+            int ItemChoice = ThingChoice.Next(1, 3);
+            int RealPrice = 0;
+            switch (ItemChoice)
             {
                 case 1:
                     ItemName = "Доширак";
+                    RealPrice = RealPriceRAN.Next(19, 33);
+
                     break;
                 case 2:
-                    ItemName = "Вода";
+                    ItemName = "Вода 0.5";
+                    RealPrice = RealPriceRAN.Next(7,14);
                     break;
                 case 3:
                     ItemName = "Заваренный доширак";
+                    RealPrice = RealPriceRAN.Next(20, 39);
                     break;
-
-
             }
             Console.WriteLine($"Здравствуйте, а можно поинтересоваться, сколько у вас стоит {ItemName}?");
+            int Price;
+            while (true)
+            {
+                try
+                {
+                    Price = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+                Console.Clear();
+                break;
+            }
 
-        }
+            char YesNo;
+            if (Price > RealPrice)
+            {
+                while (true)
+                {
+                    Console.WriteLine($"Это слишком много, я возьму его у вас за {RealPrice} рублей, не больше");
+                    Console.WriteLine($"Продать {ItemName} за {RealPrice} рублей?");
+                    Console.WriteLine("y. Продать");
+                    Console.WriteLine("n. Отказать");
+                    YesNo = Support.WaitChar();
+                    switch (YesNo)
+                    {
+                        case 'y':
+                            if (ItemName == "Доширак")
+                            {
+                                if (stats.DoshirakAmount >= 1)
+                                {
+                                    stats.Money += RealPrice;
+                                    stats.DoshirakAmount -= 1;
+                                    Console.WriteLine($"Спасибо за {ItemName}, вот ваши {RealPrice} рублей.");
+                                    Console.ReadKey();
+                                    Menu(ref stats);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Ты не можешь продать то, чего у тебя нет");
+                                    Console.ReadKey();
+                                    Customer(ref stats);
+                                }
+                            }
+                            if (ItemName == "Вода 0.5")
+                            {
+                                if (stats.WaterAmount >= 0.5)
+                                {
+                                    stats.Money += RealPrice;
+                                    stats.WaterAmount -= 0.5;
+                                    Console.WriteLine($"Спасибо за {ItemName}, вот ваши {RealPrice} рублей.");
+                                    Console.ReadKey();
+                                    Menu(ref stats);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Ты не можешь продать то, чего у тебя нет");
+                                    Console.ReadKey();
+                                    Customer(ref stats);
+                                }
+                            }
+                            if (ItemName == "Заваренный доширак")
+                            {
+                                if (stats.HotDoshirakAmount >= 1)
+                                {
+                                    stats.Money += RealPrice;
+                                    stats.HotDoshirakAmount -= 1;
+                                    Console.WriteLine($"Спасибо за {ItemName}, вот ваши {RealPrice} рублей.");
+                                    Console.ReadKey();
+                                    Menu(ref stats);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Ты не можешь продать то, чего у тебя нет");
+                                    Console.ReadKey();
+                                    Customer(ref stats);
+                                }
+                            }
+                            
 
-        private static void GoodCustomer(ref stat stats)
-        {
-           
-        }
+                            break;
+                        case 'n':
+                            Console.WriteLine("Ну и ладно...");
+                            Support.Wait();
+                            Menu(ref stats);
+                            break;
+                    }
+                    break;
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Я готов купить {ItemName} за {Price} рублей");
+                Console.WriteLine($"Продать доширак за {RealPrice} рублей?");
+                Console.WriteLine("y. Продать");
+                Console.WriteLine("n. Отказать");
+                YesNo = Support.WaitChar();
+                switch (YesNo)
+                {
+                    case 'y':
+                        if (ItemName == "Доширак")
+                        {
+                            if (stats.DoshirakAmount >= 1)
+                            {
+                                stats.Money += Price;
+                                stats.DoshirakAmount -= 1;
+                                Console.WriteLine($"Спасибо за {ItemName}, вот ваши {RealPrice} рублей.");
+                                Console.ReadKey();
+                                Menu(ref stats);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Ты не можешь продать то, чего у тебя нет");
+                                Console.ReadKey();
+                                Customer(ref stats);
+                            }
+                        }
+                        if (ItemName == "Вода 0.5")
+                        {
+                            if (stats.WaterAmount >= 0.5)
+                            {
+                                stats.Money += Price;
+                                stats.WaterAmount -= 0.5;
+                                Console.WriteLine($"Спасибо за {ItemName}, вот ваши {RealPrice} рублей.");
+                                Console.ReadKey();
+                                Menu(ref stats);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Ты не можешь продать то, чего у тебя нет");
+                                Console.ReadKey();
+                                Customer(ref stats);
+                            }
+                        }
+                        if (ItemName == "Заваренный доширак")
+                        {
+                            if (stats.HotDoshirakAmount >= 1)
+                            {
+                                stats.Money += Price;
+                                stats.HotDoshirakAmount -= 1;
+                                Console.WriteLine($"Спасибо за {ItemName}, вот ваши {RealPrice} рублей.");
+                                Console.ReadKey();
+                                Menu(ref stats);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Ты не можешь продать то, чего у тебя нет");
+                                Console.ReadKey();
+                                Customer(ref stats);
+                            }
+                        }
+                            break;
 
-        private static void SeriousCustomer(ref stat stats)
-        {
-         
+
+
+                            case 'n':
+                        Console.WriteLine("Ну и ладно...");
+                        Console.WriteLine("Покупатель ушел");
+                        Support.Wait();
+                        Menu(ref stats);
+                        break;
+                }
+            } 
         }
 
         public static void Menu(ref stat stats)
@@ -71,7 +219,7 @@ namespace COOKING_GAME
             while (true)
             {
                 var holodilnik = new StringBuilder();
-                holodilnik.AppendLine("Ты пришел на рынок,");
+                holodilnik.AppendLine("Ты на рынке,");
                 holodilnik.AppendLine("Вот что у тебя есть");
                 holodilnik.AppendLine("+--------------------+");
                 holodilnik.AppendLine("");
@@ -101,7 +249,7 @@ namespace COOKING_GAME
                 }
                 else if (c == 's')
                 {
-                    Customer();
+                    Customer(ref stats);
                 }
             }
         }
